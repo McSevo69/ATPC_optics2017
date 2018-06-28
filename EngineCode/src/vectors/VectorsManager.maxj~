@@ -1,0 +1,65 @@
+package vectors;
+
+import com.maxeler.maxcompiler.v2.build.EngineParameters;
+import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;
+import com.maxeler.maxcompiler.v2.managers.custom.DFELink;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+
+class VectorsManager extends CustomManager {
+	
+	private static int maxN = 8192;
+	private static int vectorOutSize = 4;
+
+	VectorsManager(EngineParameters engineParameters) {
+		super(engineParameters);	
+
+		KernelBlock kernel = addKernel(new VectorsKernel(makeKernelParameters("OPTICS"), maxN, vectorOutSize));
+
+		kernel.getInput("inX") <== addStreamFromCPU("inX");
+		kernel.getInput("inY") <== addStreamFromCPU("inY");
+		kernel.getInput("inZ") <== addStreamFromCPU("inZ");
+		kernel.getInput("inX4") <== addStreamFromCPU("inX4");
+		kernel.getInput("inX5") <== addStreamFromCPU("inX5");
+		kernel.getInput("inX6") <== addStreamFromCPU("inX6");
+		kernel.getInput("inX7") <== addStreamFromCPU("inX7");
+		kernel.getInput("inX8") <== addStreamFromCPU("inX8");
+
+		DFELink y = addStreamToCPU("outEuclidian");
+		y <== kernel.getOutput("outEuclidian");
+	}
+
+	static EngineInterface interfaceDefault() {
+	
+		EngineInterface ei = new EngineInterface();
+		InterfaceParam size = ei.addParam("dataSize", CPUTypes.UINT64);
+
+		ei.setTicks("OPTICS", size*size/vectorOutSize +size); //first size ticks are for loading in the dataset
+		
+		ei.setStream("inX", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inY", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inZ", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inX4", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inX5", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inX6", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inX7", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("inX8", CPUTypes.FLOAT, size * CPUTypes.FLOAT.sizeInBytes());
+		ei.setStream("outEuclidian", CPUTypes.FLOAT, size * size * CPUTypes.FLOAT.sizeInBytes());
+
+		return ei;
+
+	}
+
+	public static void main(String[] args) {
+		EngineParameters params = new EngineParameters(args);
+		VectorsManager manager = new VectorsManager(params);
+		
+		//manager.setIO(IOType.ALL_CPU);
+		manager.addMaxFileConstant("maxN", maxN);
+		manager.createSLiCinterface(interfaceDefault());
+		manager.build();
+	}
+
+}

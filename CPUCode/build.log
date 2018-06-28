@@ -1,0 +1,187 @@
+make -C ../RunRules/DFE maxfiles/Vectors.max
+make[1]: Entering directory `/home/a1308699/projects/Assignment3/RunRules/DFE'
+
+MaxCompiler Project Admin Tool Version 2015.2.00001
+ Copyright Maxeler Technologies 2010 - 2015. All rights reserved.
+
+Handler version 2
+Updating RunRule dependent Makefiles for RunRule 'DFE'
+	Updating: DFE
+Found makefiles: 1
+	Updated: DFE
+make -f Makefile.rules maxfiles/Vectors.max
+make[2]: Entering directory `/home/a1308699/projects/Assignment3/RunRules/DFE'
+test -f maxfiles/Vectors.max || env  MAX_BUILDPARAMS=" DFEModel=VECTIS  target=DFE  maxFileName=Vectors MPPREndCT='4' "  ant -v -f Vectors.xml
+Apache Ant version 1.7.1 compiled on August 24 2010
+Buildfile: Vectors.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+parsing buildfile /home/a1308699/projects/Assignment3/RunRules/DFE/Vectors.xml with URI = file:/home/a1308699/projects/Assignment3/RunRules/DFE/Vectors.xml
+Project base dir set to: /home/a1308699/projects/Assignment3/EngineCode
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Property "env.CLASSPATH" has not been set
+Property "env.MAXCOMPILERNETDIR" has not been set
+Property "EnvClassPath" has not been set
+Property "maxcompilernetdirpath" has not been set
+Build sequence for target(s) `all' is [build, run, runresult, all]
+Complete build sequence is [build, run, runresult, all, help, clean, jar, ]
+
+build:
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+      [ant] calling target(s) [default] in build file /home/a1308699/projects/Assignment3/RunRules/DFE/Vectors_Build.xml
+parsing buildfile /home/a1308699/projects/Assignment3/RunRules/DFE/Vectors_Build.xml with URI = file:/home/a1308699/projects/Assignment3/RunRules/DFE/Vectors_Build.xml
+Project base dir set to: /home/a1308699/projects/Assignment3/EngineCode
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Property "env.CLASSPATH" has not been set
+Property "env.MAXCOMPILERNETDIR" has not been set
+Property "EnvClassPath" has not been set
+Property "maxcompilernetdirpath" has not been set
+Property "finalclasspath" has not been set
+      [ant] Entering /home/a1308699/projects/Assignment3/RunRules/DFE/Vectors_Build.xml...
+Build sequence for target(s) `all' is [clean, build, all]
+Complete build sequence is [clean, build, all, ]
+
+clean:
+   [delete] Deleting directory /home/a1308699/projects/Assignment3/RunRules/DFE/dist
+   [delete] Deleting directory /home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin/vectors
+   [delete] Deleting directory /home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin
+   [delete] Deleting directory /home/a1308699/projects/Assignment3/RunRules/DFE/dist
+
+build:
+    [mkdir] Created dir: /home/a1308699/projects/Assignment3/RunRules/DFE/dist
+    [mkdir] Created dir: /home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin
+     [copy] No sources found.
+[maxjcompiler] 
+[maxjcompiler] 
+[maxjcompiler] Compiling to folder /home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin
+[maxjcompiler] 
+[maxjcompiler] Compiling files and folders:
+[maxjcompiler] /home/a1308699/projects/Assignment3/EngineCode/src
+[maxjcompiler] 
+[maxjcompiler] Compiler options:
+[maxjcompiler] -noExit
+[maxjcompiler] -classpath
+[maxjcompiler] /opt/maxcompiler/lib/MaxCompiler.jar:/home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath}
+[maxjcompiler] -d
+[maxjcompiler] /home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin
+[maxjcompiler] incorrect classpath: /home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath}
+
+all:
+      [ant] Exiting /home/a1308699/projects/Assignment3/RunRules/DFE/Vectors_Build.xml.
+
+run:
+dropping /home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath} from path as it doesn't exist
+dropping /home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath} from path as it doesn't exist
+     [java] Executing '/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre/bin/java' with arguments:
+     [java] '-Xmx2048m'
+     [java] '-classpath'
+     [java] '/home/a1308699/projects/Assignment3/RunRules/DFE/dist/bin:/opt/maxcompiler/lib/MaxCompiler.jar'
+     [java] 'vectors.VectorsManager'
+     [java] 
+     [java] The ' characters around the executable and arguments are
+     [java] not part of the command.
+dropping /home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath} from path as it doesn't exist
+dropping /home/a1308699/projects/Assignment3/EngineCode/${EnvClassPath} from path as it doesn't exist
+     [java] Setting environment variable: MAXSOURCEDIRS=src
+     [java] Sun 17:24: MaxCompiler version: 2015.2
+     [java] Sun 17:24: Build "Vectors" start time: Sun Jun 24 17:24:43 CEST 2018
+     [java] Sun 17:24: Main build process running as user a1308699 on host localhost.localdomain
+     [java] Sun 17:24: Build location: /home/a1308699/projects/Assignment3/RunRules/DFE/maxfiles/Vectors_VECTIS_DFE
+     [java] Sun 17:24: Detailed build log available in "_build.log"
+     [java] Sun 17:24: 
+     [java] Sun 17:24: ENGINE BUILD PARAMETERS
+     [java] Sun 17:24: 	        Build name: Vectors_VECTIS_DFE
+     [java] Sun 17:24: 	          DFEModel: VECTIS            
+     [java] Sun 17:24: 	       maxFileName: Vectors           
+     [java] Sun 17:24: 	            target: DFE               
+     [java] Sun 17:24: 	        enableMPCX: false             
+     [java] Sun 17:24: 	       MPPRStartCT: 1                 
+     [java] Sun 17:24: 	         MPPREndCT: 4                 
+     [java] Sun 17:24: 	       MPPRThreads: 1                 
+     [java] Sun 17:24: 	MPPRRetryThreshold: 0                 
+     [java] Sun 17:24: Instantiating kernel "OPTICS"
+     [java] Sun 17:24: 
+     [java] Sun 17:24: Compiling kernel "OPTICS"
+     [java] Sun 17:26: Generating input files (VHDL, netlists, MegaWizard/CoreGen)
+     [java] Sun 17:56: Running back-end  build (12 phases)
+     [java] Sun 17:56: (1/12) - Prepare MaxFile Data (GenerateMaxFileDataFile)
+     [java] Sun 17:56: (2/12) - Synthesize DFE Modules (XST)
+     [java] Sun 17:58: (3/12) - Link DFE Modules (NGCBuild)
+     [java] Sun 17:58: (4/12) - Prepare for Resource Analysis (EDIF2MxruBuildPass)
+     [java] Sun 17:59: (5/12) - Generate Preliminary Annotated Source Code (PreliminaryResourceAnnotationBuildPass)
+     [java] Sun 17:59: (6/12) - Report Resource Usage (XilinxPreliminaryResourceSummary)
+     [java] Sun 17:59: 
+     [java] Sun 17:59: PRELIMINARY RESOURCE USAGE
+     [java] Sun 17:59: Logic utilization:     177818 / 297600 (59.75%)
+     [java] Sun 17:59:   LUTs:                140456 / 297600 (47.20%)
+     [java] Sun 17:59:   Primary FFs:         174481 / 297600 (58.63%)
+     [java] Sun 17:59: Multipliers (25x18):      256 / 2016   (12.70%)
+     [java] Sun 17:59:   DSP blocks:             256 / 2016   (12.70%)
+     [java] Sun 17:59: Block memory (BRAM18):    613 / 2128   (28.81%)
+     [java] Sun 17:59: 
+     [java] Sun 17:59: About to start chip vendor Map/Place/Route toolflow. This will take some time.
+     [java] Sun 17:59: For this compile, we estimate this process may take longer than 1 hour.
+     [java] Sun 17:59: We recommend running in simulation to verify correctness before building a DFE configuration.
+     [java] Sun 17:59: 
+     [java] Sun 17:59: (7/12) - Prepare for Placement (NGDBuild)
+     [java] Sun 18:05: (8/12) - Place and Route DFE (XilinxMPPR)
+     [java] Sun 18:05: Executing MPPR with 4 cost tables and 1 thread.
+     [java] Sun 18:05: MPPR: Starting 4 cost tables
+     [java] Sun 19:31: MPPR: Cost table 1 failed timing with score 25865 (best score 25865)
+     [java] Sun 20:51: MPPR: Cost table 2 met timing with score 0 (best score 0)
+     [java] Sun 20:51: (9/12) - Prepare for Resource Analysis (XDLBuild)
+     [java] Sun 20:53: (10/12) - Generate Resource Report (XilinxResourceUsageBuildPass)
+     [java] Sun 20:53: (11/12) - Generate Annotated Source Code (XilinxResourceAnnotationBuildPass)
+     [java] Sun 20:53: (12/12) - Generate MaxFile (GenerateMaxFileXilinx)
+     [java] Sun 21:04: 
+     [java] Sun 21:04: FINAL RESOURCE USAGE
+     [java] Sun 21:04: Logic utilization:     163211 / 297600 (54.84%)
+     [java] Sun 21:04:   LUTs:                134375 / 297600 (45.15%)
+     [java] Sun 21:04:   Primary FFs:         145502 / 297600 (48.89%)
+     [java] Sun 21:04:   Secondary FFs:        26525 / 297600 (8.91%)
+     [java] Sun 21:04: Multipliers (25x18):      256 / 2016   (12.70%)
+     [java] Sun 21:04:   DSP blocks:             256 / 2016   (12.70%)
+     [java] Sun 21:04: Block memory (BRAM18):    615 / 2128   (28.90%)
+     [java] Sun 21:04: 
+     [java] Sun 21:04: MaxFile: /home/a1308699/projects/Assignment3/RunRules/DFE/maxfiles/Vectors_VECTIS_DFE/results/Vectors.max (MD5Sum: 011f105606bb5abdff53abf622089097)
+     [java] Sun 21:04: Build completed: Sun Jun 24 21:04:52 CEST 2018 (took 3 hours, 40 mins, 9 secs)
+     [exec] Current OS is Linux
+     [exec] Executing '/opt/maxcompiler/lib/MaxIDE/copyBuildResults.sh' with arguments:
+     [exec] '-p'
+     [exec] 'DFE'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+
+runresult:
+     [echo] Checking java run result: exit status = 0
+
+all:
+
+BUILD SUCCESSFUL
+Total time: 220 minutes 10 seconds
+make[2]: Leaving directory `/home/a1308699/projects/Assignment3/RunRules/DFE'
+make[1]: Leaving directory `/home/a1308699/projects/Assignment3/RunRules/DFE'
+make -f Makefile.rules build
+make[1]: Entering directory `/home/a1308699/projects/Assignment3/CPUCode'
+set -e; rm -f ../RunRules/DFE/objects/c/VectorsCpuCode.d ;                                                             \
+	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/opt/maxcompiler/include/slic'  -Wno-error VectorsCpuCode.c > ../RunRules/DFE/objects/c/VectorsCpuCode.d.$$ ;                                 \
+      sed 's,\(VectorsCpuCode\)\.o[ :]*,../RunRules/DFE/objects/c/\1.o ../RunRules/DFE/objects/c/VectorsCpuCode.d : ,g' < ../RunRules/DFE/objects/c/VectorsCpuCode.d.$$ > ../RunRules/DFE/objects/c/VectorsCpuCode.d; \
+      rm -f ../RunRules/DFE/objects/c/VectorsCpuCode.d.$$
+make[1]: Leaving directory `/home/a1308699/projects/Assignment3/CPUCode'
+make[1]: Entering directory `/home/a1308699/projects/Assignment3/CPUCode'
+"/opt/maxcompiler/bin/sliccompile" ../RunRules/DFE/maxfiles/Vectors.max ../RunRules/DFE/objects/maxfiles/slic_Vectors.o
+Processing maxfile for VECTIS from '../RunRules/DFE/maxfiles/Vectors.max'.
+/opt/maxcompiler/lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/dev/null" -DSLIC_NO_DESTRUCTORS -c /tmp/sliccompile_8015314426626439376/cobject/max_5204348728401579883.c -o /tmp/sliccompile_8015314426626439376/cobject/max_5204348728401579883.c.o 
+/opt/maxcompiler/lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/home/a1308699/projects/Assignment3/CPUCode/../RunRules/DFE/maxfiles/Vectors.max" -DSLIC_NO_DESTRUCTORS -c /opt/maxcompiler/src/slicinterface/MaxFileInit.c -o max_6151206042439333460.o 
+ld -r /tmp/sliccompile_8015314426626439376/cobject/max_5204348728401579883.c.o max_6151206042439333460.o -o slic_Vectors.o 
+Copying .max file C object into '/home/a1308699/projects/Assignment3/CPUCode/../RunRules/DFE/objects/maxfiles'
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/opt/maxcompiler/include/slic'  -c VectorsCpuCode.c -o ../RunRules/DFE/objects/c/VectorsCpuCode.o
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/opt/maxcompiler/include/slic'  -o ../RunRules/DFE/binaries/Vectors ../RunRules/DFE/objects/maxfiles/slic_Vectors.o ../RunRules/DFE/objects/c/VectorsCpuCode.o -g -O3  -L '/opt/maxcompiler/lib' -lslic -L '/opt/maxeler/maxeleros/lib' -lmaxeleros -lpthread -lm -lrt 
+make[1]: Leaving directory `/home/a1308699/projects/Assignment3/CPUCode'

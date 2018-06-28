@@ -1,0 +1,133 @@
+package vectors;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+import com.maxeler.maxcompiler.v2.utils.MathUtils;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Params;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEStruct;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEStructType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.WrapMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+
+class VectorsKernel extends Kernel {
+
+	static final DFEType dataType=dfeFloat(8, 24);
+
+	static final DFEStructType points = new DFEStructType(
+		DFEStructType.sft("x", dataType),
+		DFEStructType.sft("y", dataType),
+		DFEStructType.sft("z", dataType),
+		DFEStructType.sft("x4", dataType),
+		DFEStructType.sft("x5", dataType),
+		DFEStructType.sft("x6", dataType),
+		DFEStructType.sft("x7", dataType),
+		DFEStructType.sft("x8", dataType)
+	);
+		
+	DFEVar getEuclidianDistance(DFEStruct point1, DFEStruct point2) {
+
+		DFEVar point1X = point1.get("x");
+		DFEVar point1Y = point1.get("y");
+		DFEVar point1Z = point1.get("z");
+		DFEVar point1X4 = point1.get("x4");
+		DFEVar point1X5 = point1.get("x5");
+		DFEVar point1X6 = point1.get("x6");
+		DFEVar point1X7 = point1.get("x7");
+		DFEVar point1X8 = point1.get("x8");
+
+		DFEVar point2X = point2.get("x");
+		DFEVar point2Y = point2.get("y");
+		DFEVar point2Z = point2.get("z");
+		DFEVar point2X4 = point2.get("x4");
+		DFEVar point2X5 = point2.get("x5");
+		DFEVar point2X6 = point2.get("x6");
+		DFEVar point2X7 = point2.get("x7");
+		DFEVar point2X8 = point2.get("x8");
+		
+		return KernelMath.sqrt( (point1X - point2X)*(point1X - point2X)
+			 + (point1Y - point2Y)*(point1Y - point2Y) 
+			 + (point1Z - point2Z)*(point1Z - point2Z)
+			 + (point1X4 - point2X4)*(point1X4 - point2X4)
+			 + (point1X5 - point2X5)*(point1X5 - point2X5)
+			 + (point1X6 - point2X6)*(point1X6 - point2X6)
+			 + (point1X7 - point2X7)*(point1X7 - point2X7)
+			 + (point1X8 - point2X8)*(point1X8 - point2X8)
+		);
+	}
+
+	DFEStruct initStruct(DFEVar x, DFEVar y, DFEVar z, DFEVar x4, DFEVar x5, DFEVar x6, DFEVar x7, DFEVar x8) {		
+
+		DFEStruct newStruct = points.newInstance(this);
+		newStruct.set("x", x);
+		newStruct.set("y", y);
+		newStruct.set("z", z);
+		newStruct.set("x4", x4);
+		newStruct.set("x5", x5);
+		newStruct.set("x6", x6);
+		newStruct.set("x7", x7);
+		newStruct.set("x8", x8);
+
+		return newStruct;
+	}
+
+	VectorsKernel(KernelParameters parameters, int maxN, int vectorOutSize) {
+		super(parameters);
+		
+		int addrBits = MathUtils.bitsToAddress(maxN);
+		Params addressCounterParams = control.count.makeParams(addrBits+1).withWrapMode(WrapMode.STOP_AT_MAX);
+		Counter addressCounter = control.count.makeCounter(addressCounterParams);
+
+		DFEVar readingInput = addressCounter.getCount() < maxN;
+
+		// Counters
+		Params paramsOne = control.count.makeParams(addrBits)
+		.withEnable(~readingInput)
+		.withInc(vectorOutSize)
+		.withMax(maxN);
+
+		Counter counterOne = control.count.makeCounter(paramsOne);
+		
+		Params paramsTwo = control.count.makeParams(addrBits)
+		.withEnable(counterOne.getWrap())
+		.withMax(maxN);
+
+		Counter counterTwo = control.count.makeCounter(paramsTwo);
+
+		DFEVar i_cnt = counterTwo.getCount().cast(dfeUInt(addrBits));		
+		DFEVar j_cnt = counterOne.getCount().cast(dfeUInt(addrBits));		
+
+		DFEVar x = io.input("inX", dataType, readingInput);
+		DFEVar y = io.input("inY", dataType, readingInput);
+		DFEVar z = io.input("inZ", dataType, readingInput);
+		DFEVar x4 = io.input("inX4", dataType, readingInput);
+		DFEVar x5 = io.input("inX5", dataType, readingInput);
+		DFEVar x6 = io.input("inX6", dataType, readingInput);
+		DFEVar x7 = io.input("inX7", dataType, readingInput);
+		DFEVar x8 = io.input("inX8", dataType, readingInput);
+
+		DFEStruct refPoint = initStruct(x, y, z, x4, x5, x6, x7, x8);
+
+		DFEVectorType<DFEVar> vectorType = new DFEVectorType<DFEVar>(dataType, vectorOutSize);
+
+		DFEVector<DFEVar> outVec = vectorType.newInstance(this);
+
+		Memory<DFEStruct> reverseRam = mem.alloc(points, maxN);
+
+		reverseRam.write(addressCounter.getCount().cast(dfeUInt(addrBits)), refPoint, readingInput);
+
+		for (int i=0; i<vectorOutSize; i++) {				
+			outVec[i] <== (readingInput | j_cnt+i < i_cnt) ? constant.var(dataType, 0) : 
+					getEuclidianDistance(reverseRam.read(i_cnt),
+					reverseRam.read(j_cnt+i));
+		}
+
+		//Output
+		io.output("outEuclidian", outVec, vectorType, ~readingInput);		
+	}
+}
